@@ -1,13 +1,13 @@
 #include "gl.h"
 
-#include "debug.h"
+#include "util.h"
 
 #include <glad/gl.h>
 
 void gl_init(void)
 {
 	if (!gladLoaderLoadGL())
-		dbg_panic("Failed to load OpenGL library.\n");
+		panic("Failed to load OpenGL library.\n");
 
 	glEnable(GL_DEPTH_TEST);
 }
