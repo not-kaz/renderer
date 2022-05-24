@@ -1,6 +1,6 @@
 #include "sdl.h"
 
-#include "debug.h"
+#include "util.h"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -20,13 +20,13 @@ static void get_display_modes(void)
 	display.num_modes = SDL_GetNumDisplayModes(0);
 
 	if (display.num_modes < 1)
-		dbg_panic("Failed to read display modes. %s\n", SDL_GetError());
+		panic("Failed to read display modes. %s\n", SDL_GetError());
 	else
 		display.modes = malloc(sizeof(SDL_DisplayMode) * display.num_modes);
 
 	for (int i = 0; i < display.num_modes; ++i) {
 		if (SDL_GetDisplayMode(0, i, &display.modes[i]) != 0)
-			dbg_panic("No display data to read! %s\n", SDL_GetError());
+			panic("No display data to read! %s\n", SDL_GetError());
 	}
 }
 
@@ -50,10 +50,10 @@ void sdl_init(void)
 		return;
 
 	if (SDL_Init(sdl_flags))
-		dbg_panic("Failed to initialize SDL. %s\n", SDL_GetError());
+		panic("Failed to initialize SDL. %s\n", SDL_GetError());
 
 	if (IMG_Init(img_flags) != (img_flags))
-		dbg_panic("Failed to initialize SDL image library. %s\n", IMG_GetError());
+		panic("Failed to initialize SDL image library. %s\n", IMG_GetError());
 }
 
 void sdl_setup(const char *win_title)
@@ -74,11 +74,11 @@ void sdl_setup(const char *win_title)
 #endif
 
 	if (!sdl.window)
-		dbg_panic("Failed to create SDL window context. %s\n", SDL_GetError());
+		panic("Failed to create SDL window context. %s\n", SDL_GetError());
 
 	sdl.gl_ctx = SDL_GL_CreateContext(sdl.window);
 	if (!sdl.gl_ctx)
-		dbg_panic("Failed to create SDL OpenGL context. %s\n", SDL_GetError());
+		panic("Failed to create SDL OpenGL context. %s\n", SDL_GetError());
 
 	setup_gl_attribs();
 }
