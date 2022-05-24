@@ -6,5 +6,5 @@ set(CMAKE_C_STANDARD 99)
 add_library(glad glad/src/gl.c)
 include_directories(glad/include)
 
-add_executable(renderer main.c sdl.c debug.c gl.c gl.h)
+add_executable(renderer main.c util.c sdl.c gl.c shader.c)
 target_link_libraries(renderer SDL2 SDL2_image glad)
