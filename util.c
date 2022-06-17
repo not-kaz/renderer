@@ -25,7 +25,6 @@ void panic(const char *fmt, ...)
 	exit(EXIT_FAILURE);
 }
 
-/* Consider avoiding strncat(), performance and security issues? */
 char *file_to_str(const char *filename)
 {
 	FILE *fp;
