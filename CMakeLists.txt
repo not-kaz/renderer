@@ -7,5 +7,5 @@ set(CMAKE_C_FLAGS -O0)
 add_library(glad glad/src/gl.c)
 include_directories(glad/include cglm/include)
 
-add_executable(renderer main.c util.c sdl.c gl.c shader.c texture.c)
+add_executable(renderer main.c util.c sdl.c gl.c shader.c texture.c camera.c)
 target_link_libraries(renderer SDL2 SDL2_image glad m)
