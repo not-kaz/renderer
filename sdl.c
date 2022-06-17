@@ -61,12 +61,11 @@ void sdl_setup(const char *win_title)
 	if (sdl.window || sdl.gl_ctx)
 		return;
 
-	get_display_modes();
-
 #if 1
 	sdl.window = SDL_CreateWindow(win_title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 	                              1024, 720, SDL_WINDOW_OPENGL);
 #else
+	get_display_modes();
 	sdl.window = SDL_CreateWindow(win_title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 								  display.modes[display.num_modes - 1].w,
 								  display.modes[display.num_modes - 1].h,
